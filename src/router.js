@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Main from './views/Home.vue'
+import Main from './views/Main.vue'
 
 Vue.use(Router)
 
@@ -15,17 +15,45 @@ export default new Router({
        	{
 		      path: '/classify',
 		      name: 'classify',
-		      component: () => import('./views/Classify.vue')
+		      component: () => import('./views/Classify.vue'),
 		    },
 		    {
 		      path: '/classifyDetail',
 		      name: 'classifyDetail',
-		      component: () => import('./views/ClassifyDetail.vue')
+		      component: () => import('./views/ClassifyDetail.vue'),
+		      //首页顶部和底部的隐藏标志，即到classifyDetail时，隐藏main的top和buttom
+		      meta:{hideTop:true,hideBottom:true}
+		    },
+		    {
+		      path: '/bookDetail/:bid',
+		      name: 'bookDetail',
+		      component: () => import('./views/BookDetail.vue'),
+		      meta:{hideTop:true,hideBottom:true}
+		      
+		    },
+		    {
+		    	//传两个参数
+		      path: '/bookRead/:link&&:resouceId&&:bookName&:chaNum',
+		      name: 'bookRead',
+		      component: () => import('./views/BookRead.vue'),
+		      meta:{hideTop:true,hideBottom:true}
 		    },
 		    {
 		      path: '/rank',
 		      name: 'rank',
-		      component: () => import('./views/Rank.vue')
+		      component: () => import('./views/Rank.vue'),
+		    },
+		     {
+		      path: '/search',
+		      name: 'search',
+		      component: () => import('./views/Search.vue'),
+		      meta:{hideTop:true}
+		    },
+		    {
+		      path: '/searchResult/:key',
+		      name: 'searchResult',
+		      component: () => import('./views/SearchResult.vue'),
+		       meta:{hideTop:true,hideBottom:true}
 		    },
 		    {
 		      path: '*',
@@ -34,23 +62,5 @@ export default new Router({
        ]
        
     },
-   
-    
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import( /* webpackChunkName: "about" */ './views/About.vue')
-    },
-    {
-      path: '/book/:bid',
-      name: 'book',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import( /* webpackChunkName: "about" */ './views/BookDetail.vue')
-    }
   ]
 })
